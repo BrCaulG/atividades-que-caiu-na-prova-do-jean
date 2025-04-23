@@ -1,0 +1,23 @@
+def converter_numero_para_titulo_excel(numero):
+    """Converte um número de coluna do Excel (1-702) para o seu título alfabético."""
+    if not 1 <= numero <= 702:
+        return "Número de coluna inválido"
+
+    titulo = ""
+    while numero > 0:
+        resto = (numero - 1) % 26
+        letra = chr(ord('A') + resto)
+        titulo = letra + titulo
+        numero = (numero - 1) // 26
+    return titulo
+
+if __name__ == "__main__":
+    while True:
+        try:
+            numero_coluna = int(input("Digite o número da coluna do Excel (entre 1 e 702, ou 0 para sair): "))
+            if numero_coluna == 0:
+                break
+            resultado = converter_numero_para_titulo_excel(numero_coluna)
+            print(f"O título da coluna correspondente é: {resultado}")
+        except ValueError:
+            print("Por favor, digite um número inteiro válido.")
