@@ -1,0 +1,27 @@
+def verificar_straight_python(cartas):
+    """Verifica se uma mão de 5 cartas contém um straight."""
+    cartas_numericas = sorted([int(carta) for carta in cartas])
+
+    # Verifica sequências consecutivas
+    sequencia = True
+    for i in range(4):
+        if cartas_numericas[i+1] != cartas_numericas[i] + 1:
+            sequencia = False
+            break
+    if sequencia:
+        return "S"
+
+    # Verifica a sequência especial A-2-3-4-5
+    if cartas_numericas == [1, 2, 3, 4, 5]:
+        return "S"
+
+    # Verifica a sequência especial 10-J-Q-K-A (representado como 10, 11, 12, 13, 1)
+    if sorted([10 if c == 10 else 11 if c == 11 else 12 if c == 12 else 13 if c == 13 else 1 for c in cartas_numericas]) == [1, 10, 11, 12, 13]:
+        return "S"
+
+    return "N"
+
+if __name__ == "__main__":
+    entrada = input("Digite os 5 valores das cartas separados por espaço: ").split()
+    resultado = verificar_straight_python(entrada)
+    print(resultado)
