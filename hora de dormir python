@@ -1,0 +1,23 @@
+def calcular_tempo_de_sono(hora_alarme, minuto_alarme, hora_atual, minuto_atual):
+    """Calcula o tempo total de sono em minutos."""
+    minutos_alarme = (hora_alarme * 60) + minuto_alarme
+    minutos_atual = (hora_atual * 60) + minuto_atual
+
+    if minutos_atual >= minutos_alarme:
+        tempo_total_sono = minutos_atual - minutos_alarme
+    else:
+        tempo_total_sono = (24 * 60 - minutos_alarme) + minutos_atual
+    return tempo_total_sono
+
+if __name__ == "__main__":
+    try:
+        hora_alarme = int(input("Digite a hora do alarme (0-23): "))
+        minuto_alarme = int(input("Digite o minuto do alarme (0-59): "))
+        hora_atual = int(input("Digite a hora atual (0-23): "))
+        minuto_atual = int(input("Digite o minuto atual (0-59): "))
+
+        tempo_sono = calcular_tempo_de_sono(hora_alarme, minuto_alarme, hora_atual, minuto_atual)
+        print(f"O tempo total de sono é de {tempo_sono} minutos.")
+
+    except ValueError:
+        print("Por favor, digite números inteiros válidos.")
